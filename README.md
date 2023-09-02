@@ -20,6 +20,9 @@ ILV Album Optimizer is a windoews application that helps with sleeving and unsle
   - Open Local Storage
     - **[Recomended]** Copy the whole value for 'persist:auth' key.
     - Copy the token only.
+	
+![Alt text](Tutorial/GetTokenFromChromeTutorial1.png)
+![Alt text](Tutorial/GetTokenFromChromeTutorial2.png)
 
 ## Tech
 
