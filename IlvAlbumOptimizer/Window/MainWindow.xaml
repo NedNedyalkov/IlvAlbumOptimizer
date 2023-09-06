@@ -50,6 +50,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.Resources>
@@ -57,18 +58,30 @@
                    BasedOn="{StaticResource HeaderLabelStyle}" />
         </Grid.Resources>
 
+        <Grid Grid.ColumnSpan="2">
+            <Rectangle x:Name="xWarningBannerRect"
+                       Fill="Red" />
+            <TextBlock FontSize="20"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="This software or its developers will never ask for your seed phrase or ask you to sign any transactions!" />
+        </Grid>
+
         <StackPanel x:Name="xSupportDevelopmentPanel"
                     Orientation="Horizontal"
+                    Grid.Row="1"
                     Grid.ColumnSpan="2">
 
             <ui:HyperlinkButton x:Name="xAffiliateLinkButton"
                                 Content="Buy more disks!"
-                                NavigateUri="https://illuvidex.illuvium.io/illuvitars/d1sk/mint" />
+                                NavigateUri="https://illuvidex.illuvium.io/illuvitars/d1sk/mint"
+                                FontSize="20" />
 
             <ui:HyperlinkButton x:Name="xDonateAddress"
                                 Content="Say thanks!"
                                 ToolTipService.InitialShowDelay="0"
                                 Margin="{StaticResource LeftMargin}"
+                                FontSize="20"
                                 ClickMode="Press"
                                 Click="DonateAddress_Click">
                 <ui:HyperlinkButton.ToolTip>
@@ -79,46 +92,46 @@
         </StackPanel>
 
         <Label Content="Wallet"
-               Grid.Row="1"
+               Grid.Row="2"
                Grid.Column="0" />
 
         <Label Content="Bearer Token"
                x:Name="xAuthLabel"
                Margin="{StaticResource TopMargin}"
-               Grid.Row="2"
+               Grid.Row="3"
                Grid.Column="0" />
 
         <Label Content="Specific Collection"
                x:Name="xSpecificCollectionLabel"
                Margin="{StaticResource TopMargin}"
-               Grid.Row="3"
+               Grid.Row="4"
                Grid.Column="0" />
 
         <Label Content="Options"
-               Grid.Row="4"
+               Grid.Row="5"
                Grid.Column="0"
                Margin="{StaticResource TopMargin}" />
 
         <TextBox x:Name="xWalletTextBox"
                  Text=""
-                 Grid.Row="1"
+                 Grid.Row="2"
                  Grid.Column="1" />
 
         <TextBox x:Name="xAuthTextBox"
                  Margin="{StaticResource TopMargin}"
-                 Grid.Row="2"
+                 Grid.Row="3"
                  Grid.Column="1" />
 
         <ComboBox Name="xSpecificCollectionComboBox"
                   HorizontalAlignment="Stretch"
-                  Grid.Row="3"
+                  Grid.Row="4"
                   Grid.Column="1"
                   Margin="{StaticResource TopMargin}"
-                  SelectionChanged="SpecificCollection_SelectionChanged"/>
+                  SelectionChanged="SpecificCollection_SelectionChanged" />
 
         <Grid x:Name="xOptionsPanel"
               Margin="{StaticResource TopMargin}"
-              Grid.Row="4"
+              Grid.Row="5"
               Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -163,7 +176,7 @@
 
         <Grid x:Name="xButtonsGrid"
               Margin="{StaticResource TopMargin}"
-              Grid.Row="5"
+              Grid.Row="6"
               Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -203,7 +216,7 @@
                  TextWrapping="Wrap"
                  IsReadOnly="True"
                  AcceptsReturn="True"
-                 Grid.Row="6"
+                 Grid.Row="7"
                  Grid.ColumnSpan="2" />
     </Grid>
 </Window>

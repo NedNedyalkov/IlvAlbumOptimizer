@@ -1,7 +1,9 @@
-# ILV Album Optimizer
+﻿# ILV Album Optimizer
 ## _Sleeve/Unsleeve whole album/collection with a single click_
 
 ILV Album Optimizer is a windoews application that helps with sleeving and unsleeving you illuvium beyond album.
+
+## ⚠⚠⚠This software or its developers will never ask for your seed phrase or ask you to sign any transactions!⚠⚠⚠
 
 ## **[Recomended]** Usage with Firefox
 
