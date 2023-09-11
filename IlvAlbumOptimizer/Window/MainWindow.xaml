@@ -74,7 +74,7 @@
 
             <ui:HyperlinkButton x:Name="xAffiliateLinkButton"
                                 Content="Buy more disks!"
-                                NavigateUri="https://illuvidex.illuvium.io/illuvitars/d1sk/mint"
+                                NavigateUri="http://link.illuvium.io/Ned"
                                 FontSize="20" />
 
             <ui:HyperlinkButton x:Name="xDonateAddress"

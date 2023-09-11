@@ -36,7 +36,7 @@ And of course Dillinger itself is open source with a [public repository][dill]
 ## Development
 
 ##### Want to contribute? Great!
-##### Want to support me? Use my [affiliate link when you buy more disks](https://illuvidex.illuvium.io/).
+##### Want to support me? Use my [affiliate link when you buy more disks](http://link.illuvium.io/Ned).
 ##### Want to gift something on-chain? 0xNed.crypto (0x40e816b38af1e2cc60859bc7f9be01f3ce78c3c0)
 
 ## License
@@ -47,4 +47,4 @@ MIT
 
 [//]: # (References)
    [Illuvidex]: <https://illuvidex.illuvium.io/>
-   [Affiliate]: <https://illuvidex.illuvium.io/>
+   [Affiliate]: <http://link.illuvium.io/Ned>
