@@ -20,8 +20,8 @@ namespace IlvAlbumOptimizer
 
         private void StartUnsleeve(AlbumUnsleever unsleever)
         {
-            var specificCollection = xSpecificCollectionComboBox.SelectedItem.ToString();
-            if (specificCollection.Equals(noCollectionString))
+            var specificCollection = xSpecificCollectionComboBox?.SelectedItem?.ToString();
+            if (noCollectionString.Equals(specificCollection))
                 WrapTask(Task.Run(unsleever.UnsleeveAlbum));
             else
                 WrapTask(Task.Run(async () => await unsleever.UnsleeveCollection(specificCollection)));

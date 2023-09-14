@@ -21,8 +21,8 @@ namespace IlvAlbumOptimizer
 
         private void StartOptimize(AlbumOptimizer optimizer)
         {
-            var specificCollection = xSpecificCollectionComboBox.SelectedItem.ToString();
-            if (specificCollection.Equals(noCollectionString))
+            var specificCollection = xSpecificCollectionComboBox?.SelectedItem?.ToString();
+            if (noCollectionString.Equals(specificCollection))
                 WrapTask(Task.Run(optimizer.OptimizeAlbum));
             else
                 WrapTask(Task.Run(async () => await optimizer.OptimizeCollection(specificCollection)));
