@@ -30,9 +30,6 @@ ILV Album Optimizer uses a number of open source projects to work properly:
 - [ModernWPFUI] - Front end.
 - [Imx.Sdk] - Reading assets from immutable x blockchain.
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
 ## Development
 
 ##### Want to contribute? Great!
