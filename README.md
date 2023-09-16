@@ -1,6 +1,10 @@
 ﻿# ILV Album Optimizer
-### ⚠⚠⚠This software or its developers will never ask for your seed phrase or ask you to sign any transactions!⚠⚠⚠
+### ⚠️This software or its developers will never ask for your seed phrase or ask you to sign any transactions!⚠️
 ### ILV Album Optimizer is a windoews application that helps with sleeving and unsleeving you illuvium beyond album with a few clicks!
+
+## Options
+- **Dry Run** - simulate execution. 🔴**TURN THIS OFF**🔴 if you want the app to do changes to your album.
+- Print only optimizations - limit the output log to only display optimizations done.
 
 ## **[Recomended]** Usage with Firefox
 
