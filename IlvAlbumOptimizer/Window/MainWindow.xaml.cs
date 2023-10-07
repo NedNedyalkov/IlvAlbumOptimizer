@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 
 namespace IlvAlbumOptimizer
@@ -21,6 +20,7 @@ namespace IlvAlbumOptimizer
             xGetAuthButton.IsEnabled = enabled;
             xUnsleeveButton.IsEnabled = enabled;
             xClearLogButton.IsEnabled = enabled;
+            xFindBindButton.IsEnabled = enabled;
 
             xDryRunCheckBox.IsEnabled = enabled;
             xPrintOnlyOptimize.IsEnabled = enabled;
