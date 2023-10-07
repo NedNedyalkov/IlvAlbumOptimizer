@@ -24,6 +24,12 @@ namespace IlvAlbumOptimizer.Illuvidex
 
             var album = await IlluvidexClient.FetchAlbum();
 
+            if (album is null)
+            {
+                Logger.WriteLine($"Failed to load illuvitars from Illuvidex");
+                return;
+            }
+
             foreach (var collectionId in album?.CollectionIds)
                 await UnsleeveCollectionImpl(collectionId);
 
@@ -40,6 +46,12 @@ namespace IlvAlbumOptimizer.Illuvidex
         private async Task UnsleeveCollectionImpl(string collectionId)
         {
             var collection = await IlluvidexClient.FetchCollection(collectionId);
+            if (collection is null)
+            {
+                Logger.WriteLine($"Failed to load collection from Illuvidex");
+                return;
+            }
+
             Logger.Write($"Unsleeving {collection}... ", isVerbose: true);
 
             foreach (var sleeve in collection.Sleeves)

@@ -35,7 +35,7 @@ namespace IlvAlbumOptimizer.Illuvidex
 
             if (album is null)
             {
-                Logger.WriteLine($"Failed to load illuvitars from IMX");
+                Logger.WriteLine($"Failed to load illuvitars from Illuvidex");
                 return;
             }
 
@@ -56,6 +56,11 @@ namespace IlvAlbumOptimizer.Illuvidex
         private async Task OptimizeCollectionImpl(string collectionId)
         {
             var collection = await IlluvidexClient.FetchCollection(collectionId);
+            if (collection is null)
+            {
+                Logger.WriteLine($"Failed to load collection from Illuvidex");
+                return;
+            }
 
             foreach (var sleeve in collection.Sleeves)
             {

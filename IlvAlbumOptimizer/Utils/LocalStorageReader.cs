@@ -95,7 +95,8 @@ namespace IlvAlbumOptimizer.Utils
                 if (JObject.Parse(value) is not JObject valueJson)
                     return FalseWithMessage($"Failed to parse value: {value} as JObject");
 
-                if (valueJson?["ilvAuthSession"]?.Value<string>() is not string ilvAuthSessionValue)
+                if (valueJson?["ilvAuthSession"]?.Value<string>() is not string ilvAuthSessionValue
+                    || ilvAuthSessionValue.Equals("null", StringComparison.InvariantCultureIgnoreCase))
                     return FalseWithMessage($"Failed to get ilvAuthSession out of {valueJson}");
 
                 if (JObject.Parse(ilvAuthSessionValue) is not JObject ilvAuthSessionJson)
