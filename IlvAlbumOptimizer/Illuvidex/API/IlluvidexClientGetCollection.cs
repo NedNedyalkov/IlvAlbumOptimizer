@@ -85,6 +85,9 @@ namespace IlvAlbumOptimizer.Illuvidex.API
 
             if (sleevedIlluvitar["totalPower"]?.Value<int>() is int sleevedIlluvitarPower)
                 sleeve.SleevedIlluvitar.TotalPower = sleevedIlluvitarPower;
+
+            if (sleevedIlluvitar["accessoryPower"]?.Value<int>() is int sleevedIlluvitarAccessoryPower)
+                sleeve.SleevedIlluvitar.AccessoryPower = sleevedIlluvitarAccessoryPower;
         }
     }
 }

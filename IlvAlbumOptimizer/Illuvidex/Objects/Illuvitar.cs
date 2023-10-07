@@ -10,7 +10,9 @@ namespace IlvAlbumOptimizer.Illuvidex.Objects
         public int Wave { get; set; }
         public int ProductionNumber { get; set; }
         public int TotalPower { get; set; }
+        public int AccessoryPower { get; set; }
         public JObject MetaData { get; internal set; } = new JObject();
+        public bool HasAccessories => AccessoryPower > 0;
 
         public override string ToString() => $"{Name} ({Id}) = {TotalPower}";
     }
