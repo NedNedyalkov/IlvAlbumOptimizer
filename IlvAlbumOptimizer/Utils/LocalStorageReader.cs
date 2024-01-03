@@ -10,7 +10,7 @@ namespace IlvAlbumOptimizer.Utils
     public class LocalStorageReader
     {
         private const string illuvidexUrl = "illuvidex.illuvium.io";
-        private const string GetAuthSqlQuery = "SELECT * FROM data WHERE key = 'persist:auth'";
+        private const string GetAuthSqlQuery = "SELECT * FROM data WHERE key = 'AUTHENTICATION'";
 
         public static bool TryGetIlluvidexAuthData(out string token, out string profileName, out string wallet)
         {
@@ -95,18 +95,11 @@ namespace IlvAlbumOptimizer.Utils
                 if (JObject.Parse(value) is not JObject valueJson)
                     return FalseWithMessage($"Failed to parse value: {value} as JObject");
 
-                if (valueJson?["ilvAuthSession"]?.Value<string>() is not string ilvAuthSessionValue
-                    || ilvAuthSessionValue.Equals("null", StringComparison.InvariantCultureIgnoreCase))
-                    return FalseWithMessage($"Failed to get ilvAuthSession out of {valueJson}");
+                if (valueJson?["walletAddress"]?.Value<string>() is not string walletAddress)
+                    return FalseWithMessage($"Failed to get walletAddress out of {valueJson}");
 
-                if (JObject.Parse(ilvAuthSessionValue) is not JObject ilvAuthSessionJson)
-                    return FalseWithMessage($"Failed to parse value: {ilvAuthSessionValue} as JObject");
-
-                if (ilvAuthSessionJson?["walletAddress"]?.Value<string>() is not string walletAddress)
-                    return FalseWithMessage($"Failed to get walletAddress out of {ilvAuthSessionJson}");
-
-                if (ilvAuthSessionJson?["profile"] is not JObject profile)
-                    return FalseWithMessage($"Failed to get profile out of {ilvAuthSessionJson}");
+                if (valueJson?["profile"] is not JObject profile)
+                    return FalseWithMessage($"Failed to get profile out of {valueJson}");
 
                 if (profile?["token"]?.Value<string>() is not string token)
                     return FalseWithMessage($"Failed to get token out of {profile}");
