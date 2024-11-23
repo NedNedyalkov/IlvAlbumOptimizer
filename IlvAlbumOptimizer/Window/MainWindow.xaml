@@ -205,6 +205,7 @@
                     Click="Unsleeve_Click" />
             <Button Content="Firefox Auth"
                     x:Name="xGetAuthButton"
+                    Visibility="Collapsed"
                     ToolTip="Retries to authenticate with your firefox credentials."
                     HorizontalAlignment="Stretch"
                     Margin="4 0 4 0"
@@ -221,6 +222,7 @@
 
             <Button Content="Binding Ideas"
                     x:Name="xFindBindButton"
+                    Visibility="Collapsed"
                     ToolTip="Provides a list of illuvitars without any accessories sorted by the amount of collections they're used."
                     HorizontalAlignment="Stretch"
                     Margin="0 8 4 0"

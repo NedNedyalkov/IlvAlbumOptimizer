@@ -1,11 +1,13 @@
 ﻿using IlvAlbumOptimizer.Illuvidex.API;
 using IlvAlbumOptimizer.Illuvidex.Objects;
+using IlvAlbumOptimizer.Properties;
 using IlvAlbumOptimizer.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace IlvAlbumOptimizer
 {
@@ -16,6 +18,7 @@ namespace IlvAlbumOptimizer
         private void SetupTokenPaste(object sender, RoutedEventArgs e)
         {
             DataObject.AddPastingHandler(xAuthTextBox, OnPaste);
+            DataObject.AddPastingHandler(xWalletTextBox, OnPasteWallet);
         }
 
         private async void OnPaste(object sender, DataObjectPastingEventArgs e)
@@ -25,25 +28,44 @@ namespace IlvAlbumOptimizer
 
             ClearLog();
 
-            if (LocalStorageReader.TryParseAuthData(pastedText, out var token, out var profile, out var wallet))
+            var token = GetBearerTokenFromPastedText(pastedText);
+            if (token is not null && await CheckAuthData(token, string.Empty, string.Empty))
             {
-                var isAuthenticated = await CheckAuthData(token, profile, wallet);
-                UpdateAuthUI(isAuthenticated, token, profile, wallet);
-                DataObject d = new DataObject();
-                d.SetData(DataFormats.Text, string.Empty);
-                e.DataObject = d;
-            }
-            else if (await CheckAuthData(pastedText, string.Empty, string.Empty))
-            {
-                UpdateAuthUI(true, pastedText, pastedText, xWalletTextBox.Text);
+                UpdateAuthUI(true, token, token, xWalletTextBox.Text);
                 DataObject d = new DataObject();
                 d.SetData(DataFormats.Text, string.Empty);
                 e.DataObject = d;
             }
             else
             {
-                UpdateAuthUI(false, token, profile, wallet);
+                UpdateAuthUI(false, token, string.Empty, string.Empty);
             }
+        }
+
+        private void OnPasteWallet(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.SourceDataObject.GetData(DataFormats.Text) is not string pastedText)
+                return;
+
+            SaveWallet(pastedText);
+        }
+
+        private static void SaveWallet(string wallet)
+        {
+            Settings.Default.Wallet = wallet;
+            Settings.Default.Save();
+            Settings.Default.Reload();
+        }
+
+        private string GetBearerTokenFromPastedText(string pastedText)
+        {
+            foreach (var line in pastedText.Split(['\n', '\r']))
+            {
+                if (line.StartsWith("authorization"))
+                    return line.Replace("authorization: ", string.Empty);
+            }
+
+            return null;
         }
 
         private void RefreshAuth_Click(object sender, RoutedEventArgs args)
@@ -72,7 +94,16 @@ namespace IlvAlbumOptimizer
 
             xAuthLabel.Content = isAuthenticated ? "Profile" : "Token";
             xAuthTextBox.Text = isAuthenticated ? profile : "Paste token here";
-            xWalletTextBox.Text = isAuthenticated ? wallet : "Paste wallet here";
+
+            if (isAuthenticated)
+            {
+                SaveWallet(wallet);
+                xWalletTextBox.Text = wallet;
+            }
+            else if (string.IsNullOrWhiteSpace(xWalletTextBox.Text))
+            {
+                xWalletTextBox.Text = "Paste wallet here";
+            }
         }
 
         private async Task<(bool isAuthenticated, string token, string profile, string wallet)> TryToAuthenticate()
@@ -109,6 +140,11 @@ namespace IlvAlbumOptimizer
             collections.AddRange(album.CollectionIds);
             xSpecificCollectionComboBox.ItemsSource = collections;
             xSpecificCollectionComboBox.SelectedIndex = 0;
+        }
+
+        private void LoadWalletFromSettings(object _1 = null, RoutedEventArgs _2 = null)
+        {
+            xWalletTextBox.Text = Settings.Default.Wallet;
         }
     }
 }

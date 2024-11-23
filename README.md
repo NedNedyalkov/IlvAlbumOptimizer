@@ -6,17 +6,22 @@
 - **Dry Run** - simulate execution. 🔴**TURN THIS OFF**🔴 if you want the app to do changes to your album.
 - Print only optimizations - limit the output log to only display optimizations done.
 
-## **[Recomended]** Usage with Firefox
+## **[Tested With]** Usage with Firefox
 
 - Open Firefox.
-- Go to [Illuvidex].
-  - If you're not logged in, do so
-  - You're done!
+- Go to [beyond].
+  - If you're not logged in, do so.
+  - Open Developer tools: F12
+  - Open Netwrork Tab
+  - Refresh the page
+  - Look for https://api.illuvium-game.io/gamedata/illuvitars/album/collections/ api call.
+  - Look for the request headers **IN RAW VIEW**
+  - Copy the whole thing and paste it in the token field.
 
 ## Usage with Chrome
 
 - Open Chrome.
-- Go to [Illuvidex].
+- Go to [beyond].
   - If you're not logged in, do so.
   - Open Developer tools: CTRL + SHIFT + I
   - Open Application tab
@@ -48,5 +53,5 @@ MIT
 **Free Software, Hell Yeah!**
 
 [//]: # (References)
-   [Illuvidex]: <https://illuvidex.illuvium.io/>
+   [beyond]: <https://beyond.illuvium.io/album>
    [Affiliate]: <http://link.illuvium.io/Ned>

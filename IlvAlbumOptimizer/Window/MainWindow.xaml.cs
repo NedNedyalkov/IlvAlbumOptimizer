@@ -10,7 +10,8 @@ namespace IlvAlbumOptimizer
             InitializeComponent();
 
             Loaded += SetupLogger;
-            Loaded += RefreshAuth_Click;
+            //Loaded += RefreshAuth_Click;
+            Loaded += LoadWalletFromSettings;
             Loaded += SetupTokenPaste;
         }
 

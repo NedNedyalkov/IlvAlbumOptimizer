@@ -61,7 +61,11 @@ namespace IlvAlbumOptimizer.Illuvidex.API
             if (sleeveJson?["imxMetadataFilter"]?.Value<string>() is string filter)
             {
                 var metaData = HttpUtility.UrlDecode(filter);
-                if (JObject.Parse(metaData) is JObject meta)
+                metaData = metaData.Replace("{", string.Empty);
+                metaData = metaData.Replace("}", string.Empty);
+                metaData = metaData.Replace("[", string.Empty);
+                metaData = metaData.Replace("]", string.Empty);
+                if (JObject.Parse($@"{{{metaData}}}") is JObject meta)
                 {
                     sleeve.MetaData = meta;
                 }

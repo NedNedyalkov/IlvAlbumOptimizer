@@ -2,6 +2,7 @@
 using IlvAlbumOptimizer.Illuvidex.Objects;
 using IlvAlbumOptimizer.IMX;
 using IlvAlbumOptimizer.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,12 +117,19 @@ namespace IlvAlbumOptimizer.Illuvidex
             {
                 foreach (var sleeveNode in sleeve.MetaData)
                 {
-                    illuvitar.MetaData.TryGetValue(sleeveNode.Key, StringComparison.OrdinalIgnoreCase, out var value);
-                    if (value is null)
+                    var key = sleeveNode.Key;
+                    if (ConditionToPropertyMap.TryGetValue(sleeveNode.Key, out var mappedKey))
+                        key = mappedKey;
+
+                    illuvitar.MetaData.TryGetValue(key, StringComparison.OrdinalIgnoreCase, out var illuvitarProperty);
+                    if (illuvitarProperty is null)
                         return false;
 
-                    var sleeveAcceptsIlluvitarValue = sleeveNode.Value?.ToArray().Any(metaData => metaData.ToString().Equals(value.ToString())) == true;
-                    if (!sleeveAcceptsIlluvitarValue)
+                    sleeve.MetaData.TryGetValue(sleeveNode.Key, StringComparison.OrdinalIgnoreCase, out var sleeveCondition);
+                    if (sleeveCondition is null)
+                        return false;
+
+                    if (illuvitarProperty.ToString() != sleeveCondition.ToString())
                         return false;
                 }
             }
@@ -130,5 +138,25 @@ namespace IlvAlbumOptimizer.Illuvidex
         }
 
         private void LoadWalletIlluvitars() => IlluvitarsInWallet = ImxIlluvitars.ReadFromWallet(Wallet);
+
+        private static Dictionary<string, string> ConditionToPropertyMap = new Dictionary<string, string>()
+        {
+            { "HeadLine", "Headwear Line"},
+            { "HeadStage", "Headwear Stage"},
+            { "BodyLine", "Bodywear Line"},
+            { "BodyStage", "Bodywear Stage"},
+            { "EyesLine", "Eyewear Line"},
+            { "EyesStage", "Eyewear Stage"},
+            { "PropLine", "Prop Line"},
+            { "PropStage", "Prop Stage"},
+            { "SkinLine", "Skin Line"},
+            { "SkinStage", "Skin Stage"},
+
+            { "BackgroundLine", "Background Line"},
+            { "BackgroundStage", "Background Stage"},
+
+            { "ProductionNumber", "Production Number"},
+            { "ExpressionRarity", "Expression Rarity"},
+        };
     }
 }
