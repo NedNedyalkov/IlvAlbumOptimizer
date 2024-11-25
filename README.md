@@ -30,8 +30,6 @@
     - Copy the token only.
 	
 ![Alt text](Tutorial/GetTokenFromChromeTutorial1.png)
-![Alt text](Tutorial/GetTokenFromChromeTutorial3.png)
-![Alt text](Tutorial/GetTokenFromChromeTutorial2.png)
 
 ## Tech
 
